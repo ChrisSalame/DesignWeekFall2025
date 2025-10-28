@@ -1,4 +1,8 @@
-﻿namespace WiimoteApi {
+﻿using System;
+using System.Numerics;
+using UnityEngine;
+
+namespace WiimoteApi {
     public class MotionPlusData : WiimoteData
     {
         /// The rotational velocity in the Pitch direction of the Wii Remote, as
@@ -90,9 +94,18 @@
             _RollSlow = (data[4] & 0x02) == 0x02;
             _ExtensionConnected = (data[4] & 0x01) == 0x01;
 
-            _PitchSpeed = (float)(_PitchSpeedRaw - _PitchZero) * MagicCalibrationConstant;
-            _YawSpeed = (float)(_YawSpeedRaw - _YawZero) * MagicCalibrationConstant;
-            _RollSpeed = (float)(_RollSpeedRaw - _RollZero) * MagicCalibrationConstant;
+            if((float)(_PitchSpeedRaw - _PitchZero) * MagicCalibrationConstant < -5 || (float)(_PitchSpeedRaw - _PitchZero) * MagicCalibrationConstant > 5)
+                _PitchSpeed = (float)(_PitchSpeedRaw - _PitchZero) * MagicCalibrationConstant;
+            else
+                _PitchSpeed = 0;
+            if ((float)(_YawSpeedRaw - _YawZero) * MagicCalibrationConstant < -5 || (float)(_YawSpeedRaw - _YawZero) * MagicCalibrationConstant > 5)
+                _YawSpeed = (float)(_YawSpeedRaw - _YawZero) * MagicCalibrationConstant;
+            else
+                _YawSpeed = 0;
+            if((float)(_RollSpeedRaw - _RollZero) * MagicCalibrationConstant < -5 || (float)(_RollSpeedRaw - _RollZero) * MagicCalibrationConstant > 5)
+                _RollSpeed = (float)(_RollSpeedRaw - _RollZero) * MagicCalibrationConstant;
+            else
+                _RollSpeed = 0;
 
             // At high speeds, the Wii Remote Reports with less precision to reach higher values.
             // The multiplier is 2000 / 440 when in fast mode.
