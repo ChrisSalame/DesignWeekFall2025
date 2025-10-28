@@ -1,4 +1,7 @@
+using TMPro;
 using UnityEngine;
+using WiimoteApi;
+using static WiimoteDemo;
 
 public class WiiRemoteTest : MonoBehaviour
 {
@@ -11,6 +14,6 @@ public class WiiRemoteTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
