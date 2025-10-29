@@ -132,9 +132,10 @@ GameObject:
   - component: {fileID: 109642316}
   - component: {fileID: 109642315}
   - component: {fileID: 109642319}
+  - component: {fileID: 109642320}
   m_Layer: 6
   m_Name: P2dummy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,6 +256,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &109642320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109642314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe721903933825e40be5e18d773e85c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pTwoHp: 10
 --- !u!1 &201531443
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +727,7 @@ GameObject:
   - component: {fileID: 1680743819}
   m_Layer: 6
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: cannonBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,7 +13,11 @@ public class MB_cameraLockOnTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(pTwoTarget.position);
-        
+
+        if (pTwoTarget != null)
+        {
+            transform.LookAt(pTwoTarget.position);
+        }
+       
     }
 }
