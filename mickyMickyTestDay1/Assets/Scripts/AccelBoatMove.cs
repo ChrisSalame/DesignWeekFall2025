@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using UnityEngine;
 using WiimoteApi;
 
@@ -8,6 +9,7 @@ public class AccelBoatMove : MonoBehaviour
     public Rigidbody rb;
     public int multiplier;
 
+    public int o;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,7 +19,14 @@ public class AccelBoatMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mote = WiimoteManager.Wiimotes[0];
+        mote = WiimoteManager.Wiimotes[o];
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
+            mote.SendPlayerLED(true, true, (o == 0), false);
+        }
+
         Debug.Log(mote.Accel.accel[0] + " " + mote.Accel.accel[1] + " " + mote.Accel.accel[1]);
         obj.SetActive(mote.Accel.accel[2] > 615);
 
