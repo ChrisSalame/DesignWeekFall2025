@@ -35,19 +35,27 @@ public class WiimoteDemo : MonoBehaviour {
             ret = wiimote.ReadWiimoteData();
 
             if (ret > 0 && wiimote.current_ext == ExtensionController.MOTIONPLUS) {
-                Vector3 offset = new Vector3(  -wiimote.MotionPlus.PitchSpeed,
-                                                wiimote.MotionPlus.YawSpeed,
-                                                wiimote.MotionPlus.RollSpeed) / 95f; // Divide by 95Hz (average updates per second from wiimote)
+                Vector3 offset = new Vector3(  //wiimote.MotionPlus.RollSpeed,
+                   
+                                                0,wiimote.MotionPlus.YawSpeed,0
+                                                //wiimote.MotionPlus.PitchSpeed
+                                                ) / 95f; // Divide by 95Hz (average updates per second from wiimote)
                 wmpOffset += offset;
 
-                model.rot.Rotate(offset, Space.Self);
+                model.rot.Rotate(offset, Space.World);
             }
         } while (ret > 0);
 
         model.a.enabled = wiimote.Button.a;
         model.b.enabled = wiimote.Button.b;
         model.one.enabled = wiimote.Button.one;
-        model.two.enabled = wiimote.Button.two;
+        if(wiimote.Button.two)
+        {
+            wiimote.MotionPlus.SetZeroValues();
+            model.rot.rotation = new Quaternion(0, 0, 0, 0);
+            model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
+        }
+
         model.d_up.enabled = wiimote.Button.d_up;
         model.d_down.enabled = wiimote.Button.d_down;
         model.d_left.enabled = wiimote.Button.d_left;
@@ -224,7 +232,7 @@ public class WiimoteDemo : MonoBehaviour {
                 if (GUILayout.Button("Zero Out WMP"))
                 {
                     data.SetZeroValues();
-                    model.rot.rotation = Quaternion.FromToRotation(model.rot.rotation*GetAccelVector(), Vector3.up) * model.rot.rotation;
+                    model.rot.rotation = new Quaternion(0, 0, 0, 0);
                     model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
                 }
                 if(GUILayout.Button("Reset Offset"))
