@@ -20,7 +20,7 @@ public class MB_spawnCannonBall : MonoBehaviour
         {
 
             GameObject gO = Instantiate(cannonBalls);
-            gO.transform.position = transform.position;
+            gO.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z +1);
             gO.transform.rotation = transform.rotation;
             gO.SetActive(true);
         
