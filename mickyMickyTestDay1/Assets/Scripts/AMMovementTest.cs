@@ -4,6 +4,7 @@ public class AMMovementTest : MonoBehaviour
 {
     public GameObject paddle;
     public float prevRotation;
+    public Rigidbody rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,8 +17,10 @@ public class AMMovementTest : MonoBehaviour
     {
         if (paddle.transform.rotation.y > prevRotation)
         {
-            transform.position += transform.forward * Time.deltaTime;
+            rb.AddForce(transform.forward * Time.deltaTime * 300, ForceMode.Acceleration);
+            transform.Rotate(0,Time.deltaTime * 30,0);
         }
+        rb.linearVelocity *= 0.995f;
         prevRotation = paddle.transform.rotation.y;
     }
 }

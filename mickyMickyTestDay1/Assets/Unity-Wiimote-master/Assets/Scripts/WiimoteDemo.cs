@@ -49,7 +49,7 @@ public class WiimoteDemo : MonoBehaviour {
         model.a.enabled = wiimote.Button.a;
         model.b.enabled = wiimote.Button.b;
         model.one.enabled = wiimote.Button.one;
-        if(wiimote.Button.two)
+        if(wiimote.Button.b)
         {
             wiimote.MotionPlus.SetZeroValues();
             model.rot.rotation = new Quaternion(0, 0, 0, 0);
