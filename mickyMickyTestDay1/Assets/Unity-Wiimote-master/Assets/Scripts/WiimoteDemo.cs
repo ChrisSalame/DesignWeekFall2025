@@ -52,8 +52,8 @@ public class WiimoteDemo : MonoBehaviour {
         if(wiimote.Button.b)
         {
             wiimote.MotionPlus.SetZeroValues();
-            model.rot.rotation = new Quaternion(0, 0, 0, 0);
-            model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
+            model.rot.localRotation = new Quaternion(0,0,0,0);
+            //model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
         }
 
         model.d_up.enabled = wiimote.Button.d_up;
@@ -232,8 +232,7 @@ public class WiimoteDemo : MonoBehaviour {
                 if (GUILayout.Button("Zero Out WMP"))
                 {
                     data.SetZeroValues();
-                    model.rot.rotation = new Quaternion(0, 0, 0, 0);
-                    model.rot.rotation = Quaternion.FromToRotation(model.rot.forward, Vector3.forward) * model.rot.rotation;
+                    model.rot.localRotation = new Quaternion(0, 0, 0, 0);
                 }
                 if(GUILayout.Button("Reset Offset"))
                     wmpOffset = Vector3.zero;
