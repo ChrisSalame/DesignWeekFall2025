@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class MB_spawnCannonBall : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class MB_spawnCannonBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown("f"))
+        
+        if (Input.GetKeyUp(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha5))
         {
 
             GameObject gO = Instantiate(cannonBalls);
