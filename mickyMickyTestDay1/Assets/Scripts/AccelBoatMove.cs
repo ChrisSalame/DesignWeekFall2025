@@ -21,12 +21,6 @@ public class AccelBoatMove : MonoBehaviour
     {
         mote = WiimoteManager.Wiimotes[o];
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
-            mote.SendPlayerLED(true, true, (o == 0), false);
-        }
-
         Debug.Log(mote.Accel.accel[0] + " " + mote.Accel.accel[1] + " " + mote.Accel.accel[1]);
         obj.SetActive(mote.Accel.accel[2] > 615);
 
