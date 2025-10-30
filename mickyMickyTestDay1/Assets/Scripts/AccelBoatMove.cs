@@ -33,7 +33,7 @@ public class AccelBoatMove : MonoBehaviour
         if (mote.Accel.accel[1] > 610)
         {
             rb.AddForce(transform.forward * Time.deltaTime * 300, ForceMode.Acceleration);
-            transform.Rotate(0, 17 * multiplier * Time.deltaTime, 0);
+            transform.Rotate(0, 60 * multiplier * Time.deltaTime, 0);
         }
         else
         {
