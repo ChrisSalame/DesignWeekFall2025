@@ -6,13 +6,12 @@ public class Swivel : MonoBehaviour
     Wiimote mote;
     public int chosenRemote;
     private bool firstFrame = true;
-    public GameObject pointLocation;
-    public Vector3 pointStart;
+    public int offset;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        pointStart = transform.localPosition;
+
     }
 
     // Update is called once per frame
@@ -24,8 +23,7 @@ public class Swivel : MonoBehaviour
             mote.Accel.CalibrateAccel(AccelCalibrationStep.LEFT_SIDE_UP);
             firstFrame = false;
         }
-        pointLocation.transform.position = new Vector3(-(pointStart.x + mote.Accel.accel[0] - 500) / 20, 0.45f, -15);
 
-        transform.LookAt(pointLocation.transform.position);
+        transform.localEulerAngles = new Vector3(0, ((mote.Accel.accel[0] - 500)) * Mathf.Rad2Deg / 150 + offset, 0);
     }
 }
