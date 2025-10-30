@@ -5,11 +5,12 @@ public class MB_spawnCannonBall : MonoBehaviour
 {
     public GameObject cannonBalls;
     public AudioSource cannonBallFired;
+    public KeyCode inputType; 
 
     void Update()
     {
         
-        if (Input.GetKeyUp(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha5))
+        if (Input.GetKeyUp(inputType) || Input.GetKeyDown(inputType))
         {
             GameObject gO = Instantiate(cannonBalls);
             gO.transform.position = new Vector3 (transform.position.x , transform.position.y, transform.position.z);
