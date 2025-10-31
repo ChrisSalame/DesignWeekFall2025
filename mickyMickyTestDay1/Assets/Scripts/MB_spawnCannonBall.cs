@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.UI;
 
 public class MB_spawnCannonBall : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MB_spawnCannonBall : MonoBehaviour
     public bool KeyUpOn;
     [SerializeField]
     private float reloadTimer;
+    public Scrollbar scr;
+    public ColorBlock col1, col2;
 
     void Update()
     {
@@ -47,6 +50,12 @@ public class MB_spawnCannonBall : MonoBehaviour
         if (reloadTimer > 0)
         {
             reloadTimer -= Time.deltaTime;
+            scr.colors = col1;
+            scr.size = (1.4f - reloadTimer) / 1.4f;
+        }
+        else
+        {
+            scr.colors = col2;
         }
     }
 }
