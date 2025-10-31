@@ -1,14 +1,15 @@
+using TMPro;
 using UnityEngine;
 
 public class MB_playerHP : MonoBehaviour
 {
     public int pOneHp;
-
+    public TextMeshProUGUI tmp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        tmp.text = pOneHp.ToString();
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class MB_playerHP : MonoBehaviour
         {
             print(pOneHp);
             pOneHp -= 1;
-
+            tmp.text = pOneHp.ToString();
         }
     }
 }

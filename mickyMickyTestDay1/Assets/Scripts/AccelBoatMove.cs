@@ -85,4 +85,16 @@ public class AccelBoatMove : MonoBehaviour
             paddle.transform.parent.localRotation = baseRotRight;
         }
     }
+
+    private void OnApplicationQuit()
+    {
+        mote.RumbleOn = false;
+        mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
+    }
+
+    private void OnDestroy()
+    {
+        mote.RumbleOn = false;
+        mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
+    }
 }
