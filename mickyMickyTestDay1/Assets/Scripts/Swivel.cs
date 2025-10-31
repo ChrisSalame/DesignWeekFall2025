@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using WiimoteApi;
 
 public class Swivel : MonoBehaviour
@@ -6,7 +7,8 @@ public class Swivel : MonoBehaviour
     Wiimote mote;
     public int chosenRemote;
     private bool firstFrame = true;
-    public int offset;
+    public float offset;
+    public Scrollbar scr;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +19,7 @@ public class Swivel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        offset = scr.value * 360;
         mote = WiimoteManager.Wiimotes[chosenRemote];
         if (firstFrame)
         {
