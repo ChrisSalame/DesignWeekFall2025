@@ -24,6 +24,6 @@ public class Swivel : MonoBehaviour
             firstFrame = false;
         }
 
-        transform.localEulerAngles = new Vector3(0, ((mote.Accel.accel[0] - 500)) * Mathf.Rad2Deg / 150 + offset, 0);
+        transform.localEulerAngles = new Vector3(0, (-(mote.Accel.accel[0] - 500)) * Mathf.Rad2Deg / 150 + offset, 0);
     }
 }

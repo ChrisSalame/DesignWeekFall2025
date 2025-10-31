@@ -12,6 +12,7 @@ public class AccelBoatMove : MonoBehaviour
     [SerializeField]
     private float rumbleTimer, prevRumbleTimer;
     private Quaternion baseRotLeft, baseRotRight;
+    public AudioSource audSou;
 
     public int chosenRemote;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,7 +39,7 @@ public class AccelBoatMove : MonoBehaviour
         }
         else
         {
-            rb.linearVelocity *= 0.995f;
+            rb.linearVelocity *= 0.993f;
         }
 
         if (mote.Accel.accel[0] < 460)
@@ -57,6 +58,7 @@ public class AccelBoatMove : MonoBehaviour
             if (prevRumbleTimer < 0)
             {
                 mote.RumbleOn = true;
+                audSou.Play();
                 mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);
 
                 ResetPaddlePos();
@@ -69,8 +71,7 @@ public class AccelBoatMove : MonoBehaviour
             ResetPaddlePos();
         }
         prevRumbleTimer = rumbleTimer;
-
-        //mote.SendDataReportMode(InputDataType.REPORT_BUTTONS_ACCEL);    
+        
     }
 
     private void ResetPaddlePos()
